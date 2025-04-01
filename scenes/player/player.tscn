@@ -23,9 +23,9 @@ mesh = SubResource("CapsuleMesh_8afob")
 skeleton = NodePath("")
 
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70355, 0)
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
 player = NodePath("..")

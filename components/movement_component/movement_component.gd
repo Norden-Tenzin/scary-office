@@ -2,11 +2,19 @@ extends Node3D
 
 @export var player: CharacterBody3D
 @export var head: Node3D
+
+@export_category("Player Stat")
 @export var SPEED: float = 5.0
 
-var BOB_FREQ: float = 2.0
-var BOB_AMP: float = 0.08
-var bob_time: float = 0.0
+@export_category("Head Bob")
+var head_base_pos: Vector3 = Vector3.ZERO
+@export var BOB_FREQ: float = 2.0
+@export var BOB_AMP: float = 0.08
+@export var bob_time: float = 0.0
+
+func _ready() -> void:
+	head_base_pos = head.position
+	print(head_base_pos)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -27,11 +35,12 @@ func _physics_process(delta: float) -> void:
 	# Head Bob
 	bob_time += delta * player.velocity.length() * float(player.is_on_floor())
 	head.transform.origin = _headbob(bob_time)
+	print(head.transform.origin)
 	
 	player.move_and_slide()
 
 func _headbob(time: float) -> Vector3:
-	var pos := Vector3.ZERO
-	pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	pos.x = cos(time * BOB_FREQ) * BOB_AMP
+	var pos := head_base_pos
+	pos.y = head_base_pos.y + sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = head_base_pos.x + cos(time * BOB_FREQ) * BOB_AMP
 	return pos

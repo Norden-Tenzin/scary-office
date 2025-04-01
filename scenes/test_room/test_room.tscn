@@ -21,7 +21,7 @@ tonemap_mode = 2
 [node name="TestRoom" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.456773, 0.203368, 0, 0.406737, 0.913545, -0.5, 0.791154, -0.352244, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.456773, 0.203368, 0, 0.406737, 0.913545, -0.5, 0.791153, -0.352244, -0.00281286, 0.00737762, 0.00152683)
 light_energy = 1.45
 shadow_enabled = true
 

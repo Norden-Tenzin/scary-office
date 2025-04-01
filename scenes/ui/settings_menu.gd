@@ -12,7 +12,7 @@ extends Control
 @onready var SFX_BUS_ID: int = AudioServer.get_bus_index("SFX")
 
 func _ready() -> void:
-	sfx_player.stream = load("res://assets/audio/sfx/grow_sound.mp3")
+	#sfx_player.stream = load("res://assets/audio/sfx/grow_sound.mp3")
 	# sliders_init
 	master_slider.value = Global.master_volume
 	music_slider.value = Global.music_volume

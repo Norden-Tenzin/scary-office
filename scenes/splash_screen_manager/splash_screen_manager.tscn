@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwx43wi26m6pl"]
+
+[ext_resource type="Script" uid="uid://c2pstboplb703" path="res://scenes/splash_screen_manager/splash_screen_manager.gd" id="1_7vnnk"]
+[ext_resource type="Texture2D" uid="uid://cn7dkxyg75i6c" path="res://assets/splash_screens/button-light.png" id="1_cipcn"]
+
+[node name="SplashScreenManager" type="Control" node_paths=PackedStringArray("splash_screen_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vnnk")
+splash_screen_container = NodePath("SplashScreenContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SplashScreenContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen1" type="TextureRect" parent="SplashScreenContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cipcn")
+expand_mode = 2

@@ -11,5 +11,23 @@ config_version=5
 [application]
 
 config/name="ScaryOffice"
+run/main_scene="uid://b5tre1l3fvutc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://utils/autoloads/global.gd"
+GlobalEnums="*res://utils/autoloads/global_enums.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
+[dotnet]
+
+project/assembly_name="ScaryOffice"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg", "res://addons/script-ide/plugin.cfg")

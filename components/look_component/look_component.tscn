@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0hacxp4jvbo2"]
+
+[ext_resource type="Script" uid="uid://ceq5o2wuko8pi" path="res://components/look_component/look_component.gd" id="1_mnawl"]
+
+[node name="LookComponent" type="Node3D"]
+script = ExtResource("1_mnawl")

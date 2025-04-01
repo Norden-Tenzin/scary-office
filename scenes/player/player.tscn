@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1lhuwyxtej4"]
+
+[ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
+[ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8afob"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_dovo2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_8afob")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_8afob")
+skeleton = NodePath("")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70355, 0)
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
+player = NodePath("..")
+head = NodePath("../Head")
+
+[node name="LookComponent" parent="." node_paths=PackedStringArray("head", "camera") instance=ExtResource("3_gmlin")]
+head = NodePath("../Head")
+camera = NodePath("../Head/Camera3D")

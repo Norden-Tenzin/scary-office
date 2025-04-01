@@ -30,9 +30,31 @@ environment = SubResource("Environment_35u8j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="StaticBody3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
 transform = Transform3D(21.1567, 0, 0, 0, 1, 0, 0, 0, 18.7484, 0, -0.0664556, 0)
 size = Vector3(1, 0.133911, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.245, 1.81146, 6.50211)
+size = Vector3(9.48999, 4.62292, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+transform = Transform3D(-0.00101225, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00101225, 0.00500584, 1.81146, 2.16759)
+size = Vector3(9.48999, 4.62292, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+transform = Transform3D(-0.00101225, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00101225, 8.60701, 1.81146, 2.23722)
+size = Vector3(9.48999, 4.62292, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+transform = Transform3D(-0.999997, 0, -0.00240853, 0, 1, 0, 0.00240853, 0, -0.999997, 7.01164, 1.81146, -2.13193)
+size = Vector3(9.48999, 4.62292, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
+transform = Transform3D(-0.999997, 0, -0.00240853, 0, 1, 0, 0.00240853, 0, -0.999997, 4.72639, 3.99499, 2.18172)
+size = Vector3(9.48999, 0.281189, 10.5593)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_kmgll")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1lhuwyxtej4"]
+[gd_scene load_steps=7 format=3 uid="uid://d1lhuwyxtej4"]
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://tyj7tkumgioy" path="res://scenes/objects/flash_light/flash_light.tscn" id="2_lvxji"]
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
@@ -26,6 +27,9 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="FlashLight" parent="Head/Camera3D" instance=ExtResource("2_lvxji")]
+transform = Transform3D(0.955586, 0.163341, -0.245307, -0.168489, 0.985703, 0, 0.2418, 0.0413317, 0.969445, 0.3, -0.2, -0.3)
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
 player = NodePath("..")

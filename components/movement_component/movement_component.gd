@@ -35,7 +35,6 @@ func _physics_process(delta: float) -> void:
 	# Head Bob
 	bob_time += delta * player.velocity.length() * float(player.is_on_floor())
 	head.transform.origin = _headbob(bob_time)
-	print(head.transform.origin)
 	
 	player.move_and_slide()
 

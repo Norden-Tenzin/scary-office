@@ -3,18 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://d1lhuwyxtej4" path="res://scenes/player/player.tscn" id="1_56hba"]
 [ext_resource type="Script" uid="uid://docupr3qkmt5g" path="res://scenes/test_room/test_room.gd" id="1_x3t7u"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_56hba"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x3t7u"]
 sky_top_color = Color(0.590671, 0.383108, 0.39511, 1)
 sky_horizon_color = Color(0.698529, 0.638888, 0.632889, 1)
 ground_horizon_color = Color(0.698529, 0.638888, 0.632889, 1)
-energy_multiplier = 0.1
+energy_multiplier = 2.0
 
-[sub_resource type="Sky" id="Sky_x3t7u"]
-sky_material = SubResource("ProceduralSkyMaterial_56hba")
+[sub_resource type="Sky" id="Sky_35u8j"]
+sky_material = SubResource("ProceduralSkyMaterial_x3t7u")
 
-[sub_resource type="Environment" id="Environment_35u8j"]
+[sub_resource type="Environment" id="Environment_2qmvf"]
 background_mode = 2
-sky = SubResource("Sky_x3t7u")
+sky = SubResource("Sky_35u8j")
 tonemap_mode = 2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kmgll"]
@@ -22,13 +22,18 @@ tonemap_mode = 2
 [sub_resource type="SphereMesh" id="SphereMesh_x3t7u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x3t7u"]
-radius = 0.25
+radius = 0.1
 
 [node name="TestRoom" type="Node3D"]
 script = ExtResource("1_x3t7u")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_35u8j")
+environment = SubResource("Environment_2qmvf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.456776, 0.203368, 0, 0.406734, 0.913547, -0.500003, 0.791153, -0.352241, 0, 0, 0)
+light_energy = 1.45
+shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -70,10 +75,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41454, 0, 1.65438)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." groups=["PickUpAble"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598698, 0)
-collision_layer = 3
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("SphereMesh_x3t7u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]

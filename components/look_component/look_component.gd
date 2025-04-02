@@ -8,7 +8,7 @@ var head_y_axis: float = 0.0
 var camera_x_axis: float = 0.0
 
 @export var SENSITIVITY: float = 0.25
-@export var CAMERA_ACCELERATION: float = 2
+@export var CAMERA_ACCELERATION: float = 6
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

@@ -10,10 +10,12 @@ func _on_pick_up_component_item_picked_up(node_path: NodePath, with_hand: Global
 		GlobalEnums.Hand.Right:
 			remote_right.set_remote_node(node_path)
 
-func _on_pick_up_component_item_dropped(node_path: NodePath, with_hand: GlobalEnums.Hand) -> void:
+func _on_pick_up_component_item_dropped(with_hand: GlobalEnums.Hand) -> void:
 	match with_hand: 
 		GlobalEnums.Hand.Left:
 			var obj: RigidBody3D = get_node(remote_left.remote_path)
+			print("OBJ")
+			print(obj)
 			remote_left.remote_path = NodePath()
 			obj.freeze = false
 			obj.apply_impulse(Vector3.UP * 3)

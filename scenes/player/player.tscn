@@ -25,12 +25,13 @@ skeleton = NodePath("")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70355, 0)
-
-[node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
-player = NodePath("..")
-head = NodePath("../Head")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+current = true
 
 [node name="LookComponent" parent="." node_paths=PackedStringArray("head", "camera") instance=ExtResource("3_gmlin")]
 head = NodePath("../Head")
 camera = NodePath("../Head/Camera3D")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
+player = NodePath("..")
+head = NodePath("../Head")

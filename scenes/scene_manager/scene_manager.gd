@@ -20,6 +20,7 @@ const end_screen: String = "res://scenes/ui/end_screen.tscn"
 
 func _ready() -> void:
 	Global.scene_manager = self
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	self.change_gui_scene(
 		GlobalEnums.SceneName.SplashScreenManager,
 		true,
@@ -46,6 +47,10 @@ func _input(_event: InputEvent) -> void:
 					false,
 					false
 				)
+		if !get_tree().paused:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("reset"):
 		if world3d.get_children().size() > 0:
 			var children: Array[Node] = gui.get_children()

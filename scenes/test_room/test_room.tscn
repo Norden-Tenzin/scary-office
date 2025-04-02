@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://s4vg8gjp8iv5"]
+[gd_scene load_steps=7 format=3 uid="uid://s4vg8gjp8iv5"]
 
 [ext_resource type="PackedScene" uid="uid://d1lhuwyxtej4" path="res://scenes/player/player.tscn" id="1_56hba"]
+[ext_resource type="Script" uid="uid://docupr3qkmt5g" path="res://scenes/test_room/test_room.gd" id="1_x3t7u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_56hba"]
 sky_top_color = Color(0.590671, 0.383108, 0.39511, 1)
 sky_horizon_color = Color(0.698529, 0.638888, 0.632889, 1)
 ground_horizon_color = Color(0.698529, 0.638888, 0.632889, 1)
-energy_multiplier = 1.5
+energy_multiplier = 0.1
 
 [sub_resource type="Sky" id="Sky_x3t7u"]
 sky_material = SubResource("ProceduralSkyMaterial_56hba")
@@ -19,11 +20,7 @@ tonemap_mode = 2
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kmgll"]
 
 [node name="TestRoom" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.456773, 0.203368, 0, 0.406737, 0.913545, -0.5, 0.791153, -0.352244, -0.00281286, 0.00737762, 0.00152683)
-light_energy = 1.45
-shadow_enabled = true
+script = ExtResource("1_x3t7u")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_35u8j")
@@ -42,18 +39,22 @@ size = Vector3(9.48999, 4.62292, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
 transform = Transform3D(-0.00101225, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00101225, 0.00500584, 1.81146, 2.16759)
+visible = false
 size = Vector3(9.48999, 4.62292, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
 transform = Transform3D(-0.00101225, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00101225, 8.60701, 1.81146, 2.23722)
+visible = false
 size = Vector3(9.48999, 4.62292, 1)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
 transform = Transform3D(-0.999997, 0, -0.00240853, 0, 1, 0, 0.00240853, 0, -0.999997, 7.01164, 1.81146, -2.13193)
+visible = false
 size = Vector3(9.48999, 4.62292, 1)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="StaticBody3D/CSGCombiner3D"]
 transform = Transform3D(-0.999997, 0, -0.00240853, 0, 1, 0, 0.00240853, 0, -0.999997, 4.72639, 3.99499, 2.18172)
+visible = false
 size = Vector3(9.48999, 0.281189, 10.5593)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

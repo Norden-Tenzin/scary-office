@@ -81,5 +81,5 @@ skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00120942, -0.0706)
-spot_range = 14.743
-spot_angle = 19.8
+spot_range = 20.0
+spot_angle = 15.0

@@ -4,7 +4,6 @@ extends Node3D
 @onready var remote_right: RemoteTransform3D = %RemoteRight
 
 func _on_pick_up_component_item_picked_up(node_path: NodePath, with_hand: GlobalEnums.Hand) -> void:
-	print("HERE")
 	match with_hand: 
 		GlobalEnums.Hand.Left:
 			remote_left.set_remote_node(node_path)

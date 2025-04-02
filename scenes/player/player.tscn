@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
-[ext_resource type="PackedScene" uid="uid://tyj7tkumgioy" path="res://scenes/objects/flash_light/flash_light.tscn" id="2_lvxji"]
 [ext_resource type="PackedScene" uid="uid://lu7oj4wxeqxi" path="res://scenes/arms/arms.tscn" id="2_p47bc"]
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
+[ext_resource type="PackedScene" uid="uid://b1pjnkw672tjc" path="res://components/pick_up_component/pick_up_component.tscn" id="6_75vfm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
 
@@ -12,7 +12,7 @@
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("right_hand")]
 script = ExtResource("1_dovo2")
-right_hand = NodePath("Hands/RightHand")
+right_hand = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -33,18 +33,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Hands" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="PSX_First_Person_Arms" parent="Hands" instance=ExtResource("2_p47bc")]
+[node name="Arms" parent="Hands" instance=ExtResource("2_p47bc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
-
-[node name="RightHand" type="Node3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.2, -0.3)
-
-[node name="FlashLight" parent="Hands/RightHand" instance=ExtResource("2_lvxji")]
-
-[node name="LeftHand" type="Node3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.2, -0.3)
-
-[node name="FlashLight" parent="Hands/LeftHand" instance=ExtResource("2_lvxji")]
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
 player = NodePath("..")
@@ -54,3 +44,10 @@ head = NodePath("../Head")
 head = NodePath("../Head")
 camera = NodePath("../Head/Camera3D")
 hands = NodePath("../Hands")
+
+[node name="PickUpComponent" parent="." node_paths=PackedStringArray("camera", "hands") instance=ExtResource("6_75vfm")]
+camera = NodePath("../Head/Camera3D")
+hands = NodePath("../Hands")
+
+[connection signal="item_dropped" from="PickUpComponent" to="Hands/Arms" method="_on_pick_up_component_item_dropped"]
+[connection signal="item_picked_up" from="PickUpComponent" to="Hands/Arms" method="_on_pick_up_component_item_picked_up"]

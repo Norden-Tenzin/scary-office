@@ -1,5 +1,10 @@
 extends Node
 
+enum Hand {
+	Left, 
+	Right
+}
+
 enum MusicName {
 	None
 }

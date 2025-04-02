@@ -24,12 +24,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		var constrained_target: float = current_rotation + clamped_difference
 		head_y_axis = -rad_to_deg(constrained_target)
 		camera_x_axis += event.relative.y * SENSITIVITY
-		camera_x_axis = clamp(camera_x_axis, -40, 80)
+		camera_x_axis = clamp(camera_x_axis, -80, 90)
 
 func _process(delta: float) -> void:
 	head.rotation.y = lerp_angle(head.rotation.y, -deg_to_rad(head_y_axis), CAMERA_ACCELERATION * delta)
-	camera.rotation.x = lerp(camera.rotation.x, -deg_to_rad(camera_x_axis), CAMERA_ACCELERATION * delta)
-	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(85))
-	
-	hands.rotation.y = -deg_to_rad(head_y_axis)
-	hands.rotation.x = -deg_to_rad(camera_x_axis)
+	camera.rotation.x = lerp_angle(camera.rotation.x, -deg_to_rad(camera_x_axis), CAMERA_ACCELERATION * delta)
+	hands.rotation.y = lerp_angle(hands.rotation.y, -deg_to_rad(head_y_axis), CAMERA_ACCELERATION * 4 * delta)
+	hands.rotation.x = lerp_angle(hands.rotation.x, -deg_to_rad(camera_x_axis), CAMERA_ACCELERATION * 4 * delta)

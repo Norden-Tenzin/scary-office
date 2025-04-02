@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm8m8amhesdoy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_d5366"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d5366"]
+radius = 0.1
+
+[node name="BallTesting" type="RigidBody3D" groups=["PickUpAble"]]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_d5366")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_d5366")

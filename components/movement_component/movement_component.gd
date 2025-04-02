@@ -9,7 +9,7 @@ extends Node3D
 @export_category("Head Bob")
 var head_base_pos: Vector3 = Vector3.ZERO
 @export var BOB_FREQ: float = 2.0
-@export var BOB_AMP: float = 0.08
+@export var BOB_AMP: float = 0.008
 @export var bob_time: float = 0.0
 
 func _ready() -> void:

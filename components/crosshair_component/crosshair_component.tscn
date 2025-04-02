@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://biqigad40lfbd"]
+
+[ext_resource type="Script" uid="uid://bb0k6kmej6pkm" path="res://components/crosshair_component/crosshair_component.gd" id="1_wt64o"]
+[ext_resource type="Texture2D" uid="uid://wtju0xw2nv7p" path="res://assets/cursors/dot_large.svg" id="2_nxao0"]
+
+[node name="CrosshairComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wt64o")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite" type="Sprite2D" parent="CenterContainer"]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+texture = ExtResource("2_nxao0")

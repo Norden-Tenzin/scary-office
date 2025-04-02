@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1pjnkw672tjc"]
+
+[ext_resource type="Script" uid="uid://bvdn12n5p4mdt" path="res://components/pick_up_component/pick_up_component.gd" id="1_oymeo"]
+
+[node name="PickUpComponent" type="Node3D"]
+script = ExtResource("1_oymeo")

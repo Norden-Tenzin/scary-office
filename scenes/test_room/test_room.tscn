@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4ebq285weity"]
+[gd_scene load_steps=11 format=3 uid="uid://b4ebq285weity"]
 
 [ext_resource type="PackedScene" uid="uid://dm8m8amhesdoy" path="res://scenes/objects/ball/ball_testing.tscn" id="1_56hba"]
 [ext_resource type="Script" uid="uid://docupr3qkmt5g" path="res://scenes/test_room/test_room.gd" id="1_x3t7u"]
 [ext_resource type="PackedScene" uid="uid://d1lhuwyxtej4" path="res://scenes/player/player.tscn" id="2_x3t7u"]
+[ext_resource type="PackedScene" uid="uid://tyj7tkumgioy" path="res://scenes/objects/flash_light/flash_light.tscn" id="4_2qmvf"]
+[ext_resource type="PackedScene" uid="uid://caqx7cy23glfa" path="res://scenes/objects/lock/lock.tscn" id="5_2ape5"]
+[ext_resource type="PackedScene" uid="uid://s5iubqpeeclf" path="res://scenes/objects/key/key.tscn" id="6_lwucv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kmgll"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -45,3 +48,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74605, 0, 1.19974)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11206, 0, 2.66641)
 
 [node name="Player" parent="." instance=ExtResource("2_x3t7u")]
+
+[node name="FlashLight2" parent="." instance=ExtResource("4_2qmvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3517, 0.0662999, 1.48108)
+
+[node name="Lock" parent="." instance=ExtResource("5_2ape5")]
+
+[node name="Key" parent="." instance=ExtResource("6_lwucv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.993888)

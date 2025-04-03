@@ -3,14 +3,31 @@ extends Node3D
 @onready var remote_left: RemoteTransform3D = %RemoteLeft
 @onready var remote_right: RemoteTransform3D = %RemoteRight
 
-func _on_pick_up_component_item_picked_up(node_path: NodePath, with_hand: GlobalEnums.Hand) -> void:
+func _on_ray_cast_component_interact_hit(collider: Object, with_hand: int) -> void:
 	match with_hand: 
 		GlobalEnums.Hand.Left:
-			remote_left.set_remote_node(node_path)
+			interact(remote_left, collider)
 		GlobalEnums.Hand.Right:
-			remote_right.set_remote_node(node_path)
+			interact(remote_right, collider)
 
-func _on_pick_up_component_item_dropped(with_hand: GlobalEnums.Hand) -> void:
+func interact(remote: RemoteTransform3D, collider: Object) -> void:
+	if collider.is_in_group("PickUpAble"):
+		if remote.remote_path == NodePath():
+			collider.freeze = true
+			remote.set_remote_node(collider.get_path())
+	elif collider.is_in_group("Lock"):
+		if remote.remote_path != NodePath():
+			if get_node(remote.remote_path) is Key:
+				var key: Key = get_node(remote.remote_path) as Key
+				var lock: Lock = collider as Lock
+				if key.type == lock.type:
+					# unlock
+					lock.unlock()
+					# remove key 
+					key.queue_free()
+					remote.remote_path = NodePath()
+
+func _on_ray_cast_component_drop(with_hand: int) -> void:
 	match with_hand: 
 		GlobalEnums.Hand.Left:
 			if remote_left.remote_path != NodePath():

@@ -8,14 +8,6 @@ const HAND_OPEN = preload("res://assets/cursors/hand_open.svg")
 
 var curr_state: GlobalEnums.Crosshair = GlobalEnums.Crosshair.Dot
 
-func _on_pick_up_component_collision_started() -> void:
-	curr_state = GlobalEnums.Crosshair.HandOpen
-	update_crosshair()
-
-func _on_pick_up_component_collision_ended() -> void:
-	curr_state = GlobalEnums.Crosshair.Dot
-	update_crosshair()
-
 func update_crosshair() -> void:
 	match curr_state:
 		GlobalEnums.Crosshair.Dot:
@@ -25,6 +17,7 @@ func update_crosshair() -> void:
 		GlobalEnums.Crosshair.HandClosed:
 			sprite.texture = HAND_CLOSED
 
+# TODO: handle hand close drag maybe
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("left_click"):
 		#curr_state = GlobalEnums.Crosshair.HandClosed
@@ -32,3 +25,11 @@ func update_crosshair() -> void:
 	#if event.is_action_released("left_click"):
 		#curr_state = GlobalEnums.Crosshair.Dot
 		#update_crosshair()
+
+func _on_ray_cast_component_collision_started() -> void:
+	curr_state = GlobalEnums.Crosshair.HandOpen
+	update_crosshair()
+
+func _on_ray_cast_component_collision_ended() -> void:
+	curr_state = GlobalEnums.Crosshair.Dot
+	update_crosshair()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://tyj7tkumgioy"]
+[gd_scene load_steps=7 format=4 uid="uid://tyj7tkumgioy"]
 
 [ext_resource type="Texture2D" uid="uid://c2dto7d80wy4y" path="res://assets/3d/flash_light/albedo.png" id="1_afh15"]
 
@@ -72,12 +72,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gakob")
 
-[node name="FlashLight" type="Node3D" groups=["PickUpAble"]]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_br478"]
+points = PackedVector3Array(-0.000874462, 0.000277522, 0, -0.000874462, 0.000138707, 0.000240341, 0.00127576, 9.41554e-05, 0.000163082, 0.00127576, 0.000188311, 0, 0.00127576, 9.41554e-05, -0.000163129, -0.000874462, 0.000138707, -0.000240341, -0.00125759, 0.000277522, 0, -0.000874462, -0.000138761, 0.000240341, -0.00125759, 0.000138707, 0.000240341, 0.00127576, -9.42097e-05, 0.000163082, 0.00127576, -9.42097e-05, -0.000163129, -0.000874462, -0.000138761, -0.000240341, -0.00125759, 0.000138707, -0.000240341, -0.000874462, -0.000277522, 0, -0.00125759, -0.000138761, 0.000240341, 0.00127576, -0.000188365, 0, -0.00125759, -0.000138761, -0.000240341, -0.00125759, -0.000277522, 0)
+
+[node name="FlashLight" type="RigidBody3D" groups=["PickUpAble"]]
+collision_layer = 2
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-06, 100, 4.37114e-06, 0, -4.37114e-06, 100, 100, 4.37114e-06, 1.91069e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_cdrsm")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37029e-06, 105.24, 5.37344e-06, 0, -4.60019e-06, 122.93, 99.9804, 4.60019e-06, 2.34881e-13, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_br478")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00120942, -0.0706)

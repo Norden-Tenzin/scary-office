@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://caqx7cy23glfa"]
+
+[ext_resource type="Script" uid="uid://3kew7lete0gn" path="res://scenes/objects/lock/lock.gd" id="1_yjytn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3lorj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3lorj"]
+radius = 0.25
+
+[node name="Lock" type="RigidBody3D" groups=["Lock"]]
+collision_layer = 2
+script = ExtResource("1_yjytn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_3lorj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3lorj")

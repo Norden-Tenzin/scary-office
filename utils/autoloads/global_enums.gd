@@ -1,5 +1,11 @@
 extends Node
 
+enum LockKeyType {
+	Red,
+	Green,
+	Blue
+}
+
 enum Crosshair {
 	Dot,
 	HandClosed,

@@ -1,16 +1,17 @@
-[gd_scene load_steps=26 format=4 uid="uid://d1lhuwyxtej4"]
+[gd_scene load_steps=27 format=4 uid="uid://d1lhuwyxtej4"]
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://ddymiru1eefej" path="res://scenes/arms/arms.gd" id="2_75vfm"]
 [ext_resource type="Script" uid="uid://c5nkrt115x25w" path="res://scenes/player/ray_cast_3d.gd" id="2_qek5x"]
 [ext_resource type="Texture2D" uid="uid://bb73ajarfwtb2" path="res://assets/3d/arms/PSX_First_Person_Arms_arms.png" id="3_0owmy"]
+[ext_resource type="PackedScene" uid="uid://dofdfp1p4gc5" path="res://components/ray_cast_component/ray_cast_component.tscn" id="3_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
-[ext_resource type="PackedScene" uid="uid://b1pjnkw672tjc" path="res://components/pick_up_component/pick_up_component.tscn" id="6_75vfm"]
+[ext_resource type="Script" uid="uid://emfwoucueeyh" path="res://components/ray_cast_component/ray_cast_component.gd" id="4_h17s1"]
 [ext_resource type="PackedScene" uid="uid://biqigad40lfbd" path="res://components/crosshair_component/crosshair_component.tscn" id="7_0owmy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
-radius = 0.3
+radius = 0.23211
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8afob"]
 radius = 0.3
@@ -5202,7 +5203,7 @@ mesh = SubResource("CapsuleMesh_8afob")
 skeleton = NodePath("")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.2)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
@@ -5214,8 +5215,13 @@ script = ExtResource("2_qek5x")
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D/RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.18269)
 
+[node name="RayCastComponent" parent="Head/Camera3D" instance=ExtResource("3_5gtgg")]
+collision_mask = 2
+hit_from_inside = true
+script = ExtResource("4_h17s1")
+
 [node name="Hands" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.2)
 
 [node name="Arms" type="Node3D" parent="Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0.1)
@@ -5577,7 +5583,7 @@ bones/49/rotation = Quaternion(0.0394397, 0.0148376, -0.0241185, 0.998821)
 bones/49/scale = Vector3(1, 1, 1)
 
 [node name="HandLeft" type="BoneAttachment3D" parent="Hands/Arms/arms_armature/Skeleton3D"]
-transform = Transform3D(-0.254668, -0.0257359, -0.966686, -0.468596, -0.871157, 0.146642, -0.845909, 0.49033, 0.209796, 0.234487, 1.08304, 0.0540583)
+transform = Transform3D(-0.254668, -0.0257362, -0.966686, -0.468595, -0.871157, 0.146642, -0.845909, 0.49033, 0.209796, 0.234487, 1.08304, 0.0540583)
 bone_name = "hand.L"
 bone_idx = 9
 
@@ -5585,7 +5591,7 @@ bone_idx = 9
 unique_name_in_owner = true
 
 [node name="HandRight" type="BoneAttachment3D" parent="Hands/Arms/arms_armature/Skeleton3D"]
-transform = Transform3D(-0.0770597, 0.0221403, 0.996781, 0.972551, -0.218491, 0.0800396, 0.21956, 0.975588, -0.00469577, -0.23096, 1.28779, 0.222484)
+transform = Transform3D(-0.0770597, 0.0221402, 0.996781, 0.972551, -0.218491, 0.0800397, 0.21956, 0.975588, -0.00469571, -0.23096, 1.28779, 0.222484)
 bone_name = "hand.R"
 bone_idx = 30
 
@@ -5611,13 +5617,9 @@ head = NodePath("../Head")
 camera = NodePath("../Head/Camera3D")
 hands = NodePath("../Hands")
 
-[node name="PickUpComponent" parent="." node_paths=PackedStringArray("camera", "hands") instance=ExtResource("6_75vfm")]
-camera = NodePath("../Head/Camera3D")
-hands = NodePath("../Hands")
-
 [node name="CrosshairComponent" parent="." instance=ExtResource("7_0owmy")]
 
-[connection signal="collision_ended" from="PickUpComponent" to="CrosshairComponent" method="_on_pick_up_component_collision_ended"]
-[connection signal="collision_started" from="PickUpComponent" to="CrosshairComponent" method="_on_pick_up_component_collision_started"]
-[connection signal="item_dropped" from="PickUpComponent" to="Hands/Arms" method="_on_pick_up_component_item_dropped"]
-[connection signal="item_picked_up" from="PickUpComponent" to="Hands/Arms" method="_on_pick_up_component_item_picked_up"]
+[connection signal="collision_ended" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_ended"]
+[connection signal="collision_started" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_started"]
+[connection signal="drop" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_drop"]
+[connection signal="interact_hit" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_interact_hit"]

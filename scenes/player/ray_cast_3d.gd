@@ -1,6 +1,5 @@
 extends RayCast3D
 
-
 var isHoldingObject: bool = false
 var held_object: RigidBody3D = null
 var distance: float
@@ -9,8 +8,7 @@ var distance: float
 func _physics_process(delta: float) -> void:
 	hold_object()
 	drag_object()
-		
-		
+	
 func hold_object() -> void:
 	if isHoldingObject && Input.is_action_pressed("left_click"):
 		return
@@ -40,4 +38,3 @@ func drag_object() -> void:
 		var velocity: Vector3 = $Marker3D.global_position - held_object.global_position
 		velocity = velocity.normalized()
 		held_object.apply_central_force(velocity * 3)
-		

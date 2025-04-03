@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://tyj7tkumgioy"]
+[gd_scene load_steps=9 format=4 uid="uid://tyj7tkumgioy"]
 
 [ext_resource type="Texture2D" uid="uid://c2dto7d80wy4y" path="res://assets/3d/flash_light/albedo.png" id="1_afh15"]
+[ext_resource type="Script" uid="uid://dismclbiye5bm" path="res://scenes/objects/flash_light/flash_light.gd" id="1_br478"]
+[ext_resource type="AudioStream" uid="uid://b0b3kn8bmjljy" path="res://assets/audio/flash_light_off.mp3" id="3_qy8wa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ybq5"]
 resource_name = "Flashlight"
@@ -72,22 +74,33 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gakob")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_br478"]
-points = PackedVector3Array(-0.000874462, 0.000277522, 0, -0.000874462, 0.000138707, 0.000240341, 0.00127576, 9.41554e-05, 0.000163082, 0.00127576, 0.000188311, 0, 0.00127576, 9.41554e-05, -0.000163129, -0.000874462, 0.000138707, -0.000240341, -0.00125759, 0.000277522, 0, -0.000874462, -0.000138761, 0.000240341, -0.00125759, 0.000138707, 0.000240341, 0.00127576, -9.42097e-05, 0.000163082, 0.00127576, -9.42097e-05, -0.000163129, -0.000874462, -0.000138761, -0.000240341, -0.00125759, 0.000138707, -0.000240341, -0.000874462, -0.000277522, 0, -0.00125759, -0.000138761, 0.000240341, 0.00127576, -0.000188365, 0, -0.00125759, -0.000138761, -0.000240341, -0.00125759, -0.000277522, 0)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_br478"]
+height = 0.25
+radius = 0.03
 
 [node name="FlashLight" type="RigidBody3D" groups=["PickUpAble"]]
 collision_layer = 2
+script = ExtResource("1_br478")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-06, 100, 4.37114e-06, 0, -4.37114e-06, 100, 100, 4.37114e-06, 1.91069e-13, 0, 0, 0)
 mesh = SubResource("ArrayMesh_cdrsm")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37029e-06, 105.24, 5.37344e-06, 0, -4.60019e-06, 122.93, 99.9804, 4.60019e-06, 2.34881e-13, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_br478")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="Light" type="SpotLight3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00120942, -0.0706)
 spot_range = 20.0
 spot_angle = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_br478")
+
+[node name="On" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_qy8wa")
+
+[node name="Off" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_qy8wa")

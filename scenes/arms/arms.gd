@@ -11,21 +11,27 @@ func _on_ray_cast_component_interact_hit(collider: Object, with_hand: int) -> vo
 			interact(remote_right, collider)
 
 func interact(remote: RemoteTransform3D, collider: Object) -> void:
-	if collider.is_in_group("PickUpAble"):
-		if remote.remote_path == NodePath():
-			collider.freeze = true
-			remote.set_remote_node(collider.get_path())
-	elif collider.is_in_group("Lock"):
+	if collider:
+		if collider.is_in_group("PickUpAble"):
+			if remote.remote_path == NodePath():
+				collider.freeze = true
+				remote.set_remote_node(collider.get_path())
+		elif collider.is_in_group("Lock"):
+			if remote.remote_path != NodePath():
+				if get_node(remote.remote_path) is Key:
+					var key: Key = get_node(remote.remote_path) as Key
+					var lock: Lock = collider as Lock
+					if key.type == lock.type:
+						# unlock
+						lock.unlock()
+						# remove key 
+						key.queue_free()
+						remote.remote_path = NodePath()
+	else:
 		if remote.remote_path != NodePath():
-			if get_node(remote.remote_path) is Key:
-				var key: Key = get_node(remote.remote_path) as Key
-				var lock: Lock = collider as Lock
-				if key.type == lock.type:
-					# unlock
-					lock.unlock()
-					# remove key 
-					key.queue_free()
-					remote.remote_path = NodePath()
+			if get_node(remote.remote_path) is FlashLight:
+				var flash_light: FlashLight = get_node(remote.remote_path) as FlashLight
+				flash_light.interact()
 
 func _on_ray_cast_component_drop(with_hand: int) -> void:
 	match with_hand: 

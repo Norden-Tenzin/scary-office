@@ -12,12 +12,10 @@ var last_collider: Object = null
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		var collider: Object = check_collision()
-		if collider is Object:
-			interact_hit.emit(collider, GlobalEnums.Hand.Left)
+		interact_hit.emit(collider, GlobalEnums.Hand.Left)
 	if Input.is_action_just_pressed("right_click"):
 		var collider: Object = check_collision()
-		if collider is Object:
-			interact_hit.emit(collider, GlobalEnums.Hand.Right)
+		interact_hit.emit(collider, GlobalEnums.Hand.Right)
 	# TODO: Add handle drop
 	if Input.is_action_just_pressed("drop_left"):
 		drop.emit(GlobalEnums.Hand.Left)

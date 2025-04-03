@@ -35,11 +35,16 @@ project/assembly_name="ScaryOffice"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [global_group]
 
 PickUpAble="objects that can be picked up"
+Door=""
 
 [input]
 

@@ -34,16 +34,24 @@ func interact(remote: RemoteTransform3D, collider: Object) -> void:
 				flash_light.interact()
 
 func _on_ray_cast_component_drop(with_hand: int) -> void:
-	match with_hand: 
+	match with_hand:
 		GlobalEnums.Hand.Left:
 			if remote_left.remote_path != NodePath():
 				var obj: RigidBody3D = get_node(remote_left.remote_path)
 				remote_left.remote_path = NodePath()
 				obj.freeze = false
-				obj.apply_impulse(Vector3.UP * 3)
+				# DROP
+				#obj.apply_impulse(Vector3.UP * 3)
+				# THROW
+				var impulse_vector: Vector3 = -self.global_transform.basis.z * 10  # Replace force_magnitude with your desired value
+				obj.apply_impulse(impulse_vector, self.position)
 		GlobalEnums.Hand.Right:
 			if remote_right.remote_path != NodePath():
 				var obj: RigidBody3D = get_node(remote_right.remote_path)
 				remote_right.remote_path = NodePath()
 				obj.freeze = false
-				obj.apply_impulse(Vector3.UP * 3)
+				# DROP
+				#obj.apply_impulse(Vector3.UP * 3)
+				# THROW
+				var impulse_vector: Vector3 = -self.global_transform.basis.z * 10  # Replace force_magnitude with your desired value
+				obj.apply_impulse(impulse_vector, self.position)

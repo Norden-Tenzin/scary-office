@@ -3,19 +3,24 @@ extends RayCast3D
 signal collision_started
 signal collision_ended
 
-signal interact_hit(collider: Object, with_hand: GlobalEnums.Hand)
+signal interact_hit(collider: Object, with_hand: GlobalEnums.Hand, other: Dictionary)
 signal drop(with_hand: GlobalEnums.Hand)
 
 var was_colliding: bool = false
 var last_collider: Object = null
 
+var held_object: RigidBody3D = null
+var distance: float
+
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("left_click"):
+	#hold_object()
+	#drag_object()
+	if Input.is_action_pressed("left_click"):
 		var collider: Object = check_collision()
-		interact_hit.emit(collider, GlobalEnums.Hand.Left)
+		interact_hit.emit(collider, GlobalEnums.Hand.Left, {"marker_position": $Marker3D.global_position})
 	if Input.is_action_just_pressed("right_click"):
 		var collider: Object = check_collision()
-		interact_hit.emit(collider, GlobalEnums.Hand.Right)
+		interact_hit.emit(collider, GlobalEnums.Hand.Right, {})
 	# TODO: Add handle drop
 	if Input.is_action_just_pressed("drop_left"):
 		drop.emit(GlobalEnums.Hand.Left)
@@ -43,4 +48,3 @@ func check_collision() -> Object:
 	if is_colliding():
 		return get_collider()
 	return null
-	

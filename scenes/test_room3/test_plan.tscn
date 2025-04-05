@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://df3sung40bvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://df3sung40bvtp"]
 
 [ext_resource type="PackedScene" uid="uid://3rhcrctiainw" path="res://assets/test_plan/test_plan.glb" id="1_67px6"]
 [ext_resource type="Texture2D" uid="uid://kbflsd64fuxy" path="res://assets/prototype textures/PNG/Light/texture_08.png" id="2_7150y"]
@@ -25,6 +25,17 @@ sky = SubResource("Sky_56hba")
 tonemap_mode = 2
 sdfgi_enabled = true
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoljd"]
+albedo_color = Color(0.712766, 0.229718, 0.18196, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4stue"]
+material = SubResource("StandardMaterial3D_qoljd")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qoljd"]
+radius = 0.1
 
 [node name="test_plan" instance=ExtResource("1_67px6")]
 
@@ -63,3 +74,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5541
 
 [node name="Door6" parent="." index="9" instance=ExtResource("3_wxpxc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.5552, 1.23365, -3.02266)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." index="10" groups=["Door"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.41671, 0.608651, 4.56003)
+collision_layer = 10
+collision_mask = 9
+mass = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" index="0"]
+mesh = SubResource("SphereMesh_4stue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="1"]
+shape = SubResource("SphereShape3D_qoljd")

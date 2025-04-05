@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://d1lhuwyxtej4"]
+[gd_scene load_steps=27 format=4 uid="uid://d1lhuwyxtej4"]
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://emfwoucueeyh" path="res://components/ray_cast_component/ray_cast_component.gd" id="4_h17s1"]
 [ext_resource type="PackedScene" uid="uid://biqigad40lfbd" path="res://components/crosshair_component/crosshair_component.tscn" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://tx3j28r20l3i" path="res://components/input_component/input_component.tscn" id="9_5gtgg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
 radius = 0.23211
@@ -5186,7 +5187,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 9
 script = ExtResource("1_dovo2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -5218,9 +5218,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.18269)
 [node name="Hands" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.2)
 
-[node name="Arms" type="Node3D" parent="Hands"]
+[node name="Arms" type="Node3D" parent="Hands" node_paths=PackedStringArray("ray_cast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0.1)
 script = ExtResource("2_75vfm")
+ray_cast = NodePath("../../Head/Camera3D/RayCastComponent")
 
 [node name="arms_armature" type="Node3D" parent="Hands/Arms"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -5614,7 +5615,14 @@ hands = NodePath("../Hands")
 
 [node name="CrosshairComponent" parent="." instance=ExtResource("7_0owmy")]
 
+[node name="InputComponent" parent="." instance=ExtResource("9_5gtgg")]
+
 [connection signal="collision_ended" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_ended"]
 [connection signal="collision_started" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_started"]
+[connection signal="drag" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_drag"]
 [connection signal="drop" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_drop"]
 [connection signal="interact_hit" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_interact_hit"]
+[connection signal="undrag" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_undrag"]
+[connection signal="Click" from="InputComponent" to="Hands/Arms" method="_on_input_component_click"]
+[connection signal="DragStarted" from="InputComponent" to="Hands/Arms" method="_on_input_component_drag_started"]
+[connection signal="LetGo" from="InputComponent" to="Hands/Arms" method="_on_input_component_let_go"]

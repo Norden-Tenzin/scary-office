@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Global="*res://utils/autoloads/global.gd"
 GlobalEnums="*res://utils/autoloads/global_enums.gd"
+Audio="*res://addons/easy_audio/audio.gd"
+Music="*res://addons/easy_audio/music.gd"
 
 [debug]
 
@@ -35,7 +37,7 @@ project/assembly_name="ScaryOffice"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_audio/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 
@@ -46,6 +48,7 @@ import/blender/enabled=false
 PickUpAble="objects that can be picked up"
 Door=""
 Lock=""
+Floor=""
 
 [input]
 

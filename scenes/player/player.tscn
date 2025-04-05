@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d1lhuwyxtej4"]
+[gd_scene load_steps=29 format=4 uid="uid://d1lhuwyxtej4"]
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://emfwoucueeyh" path="res://components/ray_cast_component/ray_cast_component.gd" id="4_h17s1"]
 [ext_resource type="PackedScene" uid="uid://biqigad40lfbd" path="res://components/crosshair_component/crosshair_component.tscn" id="7_0owmy"]
+[ext_resource type="Script" uid="uid://1jgsuc1snep3" path="res://addons/spatial_audio_3d/spatial_audio_3d.gd" id="10_h17s1"]
+[ext_resource type="AudioStream" uid="uid://540t7el1enl2" path="res://assets/audio/vostokfootsteps/fc1.ogg" id="10_je7p5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
 radius = 0.23211
@@ -5618,6 +5620,11 @@ camera = NodePath("../Head/Camera3D")
 hands = NodePath("../Hands")
 
 [node name="CrosshairComponent" parent="." instance=ExtResource("7_0owmy")]
+
+[node name="SpatialAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_je7p5")
+script = ExtResource("10_h17s1")
+metadata/_custom_type_script = "uid://1jgsuc1snep3"
 
 [connection signal="collision_ended" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_ended"]
 [connection signal="collision_started" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_started"]

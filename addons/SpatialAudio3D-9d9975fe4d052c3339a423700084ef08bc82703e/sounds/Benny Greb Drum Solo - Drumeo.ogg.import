@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ckn8hxwk3kfex"
+path="res://.godot/imported/Benny Greb Drum Solo - Drumeo.ogg-1b5208da664df880fba4341e42e0b3ab.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/Benny Greb Drum Solo - Drumeo.ogg"
+dest_files=["res://.godot/imported/Benny Greb Drum Solo - Drumeo.ogg-1b5208da664df880fba4341e42e0b3ab.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtspx1dvpj8xf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fki44"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rnlvh"]
+material = SubResource("StandardMaterial3D_fki44")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up0bi"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ouq7j"]
+material = SubResource("StandardMaterial3D_up0bi")
+
+[node name="Sound Visualizer" type="MeshInstance3D"]
+transform = Transform3D(0.99998, -2.08616e-07, -4.36607e-06, 2.02731e-15, 0.99998, -5.02918e-08, 0, 0, 0.999994, 0, 0, 0)
+mesh = SubResource("SphereMesh_rnlvh")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="Sound Visualizer (occluded)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 4.5475e-14, 6.82121e-13, -1.67925e-14, 1, 0, 2.27374e-13, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_ouq7j")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true

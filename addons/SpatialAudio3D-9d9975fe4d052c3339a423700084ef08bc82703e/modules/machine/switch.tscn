@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c15nevasm0cx0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvvsp"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1ssp"]
+albedo_color = Color(0.266796, 0.0789997, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_08l6e"]
+material = SubResource("StandardMaterial3D_u1ssp")
+top_radius = 0.3
+bottom_radius = 0.2
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_44chp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrxnk"]
+resource_local_to_scene = true
+albedo_color = Color(0.787542, 4.16331e-06, 5.77569e-07, 1)
+emission = Color(1, 0, 0, 1)
+backlight = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gbgdo"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_rrxnk")
+
+[node name="Switch" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_vvvsp")
+
+[node name="Pillar" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_08l6e")
+
+[node name="Button" type="MeshInstance3D" parent="Pillar"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_44chp")
+
+[node name="Indicator" type="MeshInstance3D" parent="Pillar/Button"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_gbgdo")

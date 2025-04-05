@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2exdkl4d4ykl"]
+[gd_scene load_steps=8 format=3 uid="uid://c2exdkl4d4ykl"]
+
+[ext_resource type="Texture2D" path="res://assets/prototype textures/PNG/Dark/texture_08.png" id="1_3y86g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_myn5o"]
 size = Vector3(0.05, 2.3, 0.05)
@@ -13,7 +15,12 @@ size = Vector3(0.05, 2.3, 0.05)
 [sub_resource type="BoxShape3D" id="BoxShape3D_htqmj"]
 size = Vector3(0.05, 2.3, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qr7a"]
+albedo_texture = ExtResource("1_3y86g")
+uv1_triplanar = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_2bm67"]
+material = SubResource("StandardMaterial3D_4qr7a")
 size = Vector3(0.05, 2.3, 1)
 
 [node name="Door" type="Node3D"]

@@ -5195,7 +5195,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8afob")
 
 [node name="Body" type="Node3D" parent="."]
-visible = false
 
 [node name="Mesh" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -5583,7 +5582,7 @@ bones/49/rotation = Quaternion(0.040376, 0.0148149, -0.0241324, 0.998783)
 bones/49/scale = Vector3(1, 1, 1)
 
 [node name="HandLeft" type="BoneAttachment3D" parent="Hands/Arms/arms_armature/Skeleton3D"]
-transform = Transform3D(-0.254668, -0.0257353, -0.966686, -0.585962, 0.799335, 0.133089, 0.769281, 0.600334, -0.218645, 0.234487, 1.58705, 0.27434)
+transform = Transform3D(-0.254668, -0.0257353, -0.966686, -0.585962, 0.799335, 0.133089, 0.769281, 0.600335, -0.218645, 0.234487, 1.58704, 0.27434)
 bone_name = "hand.L"
 bone_idx = 9
 
@@ -5591,7 +5590,7 @@ bone_idx = 9
 unique_name_in_owner = true
 
 [node name="HandRight" type="BoneAttachment3D" parent="Hands/Arms/arms_armature/Skeleton3D"]
-transform = Transform3D(-0.0770595, 0.0221395, 0.996781, 0.571109, 0.820464, 0.0259282, -0.817249, 0.571269, -0.0758686, -0.23096, 1.58694, 0.274675)
+transform = Transform3D(-0.0770595, 0.0221395, 0.996781, 0.57111, 0.820464, 0.0259282, -0.817249, 0.571269, -0.0758687, -0.23096, 1.58694, 0.274675)
 bone_name = "hand.R"
 bone_idx = 30
 

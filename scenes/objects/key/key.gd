@@ -1,4 +1,4 @@
 extends RigidBody3D
-class_name Key
+class_name Keycard
 
 @export var type: GlobalEnums.LockKeyType = GlobalEnums.LockKeyType.Red

@@ -18,8 +18,8 @@ func interact(remote: RemoteTransform3D, collider: Object) -> void:
 				remote.set_remote_node(collider.get_path())
 		elif collider.is_in_group("Lock"):
 			if remote.remote_path != NodePath():
-				if get_node(remote.remote_path) is Key:
-					var key: Key = get_node(remote.remote_path) as Key
+				if get_node(remote.remote_path) is Keycard and collider is Lock:
+					var key: Keycard = get_node(remote.remote_path) as Keycard
 					var lock: Lock = collider as Lock
 					if key.type == lock.type:
 						# unlock

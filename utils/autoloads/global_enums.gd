@@ -1,5 +1,11 @@
 extends Node
 
+enum SoundLevel {
+	Low,
+	Mid,
+	High,
+}
+
 enum LockKeyType {
 	Red,
 	Green,

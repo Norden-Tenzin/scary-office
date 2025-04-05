@@ -46,6 +46,7 @@ import/blender/enabled=false
 PickUpAble="objects that can be picked up"
 Door=""
 Lock=""
+Floor=""
 
 [input]
 

@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm8m8amhesdoy"]
+[gd_scene load_steps=5 format=3 uid="uid://dm8m8amhesdoy"]
+
+[ext_resource type="PackedScene" uid="uid://cixv7sufvhcpk" path="res://components/on_drop_component/on_drop_component.tscn" id="1_weik0"]
+[ext_resource type="AudioStream" uid="uid://dygppe7e01uqu" path="res://assets/audio/flash_ligh_on.mp3" id="2_1e8as"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_d5366"]
 
@@ -14,3 +17,7 @@ mesh = SubResource("SphereMesh_d5366")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_d5366")
+
+[node name="OnDropComponent" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("1_weik0")]
+rigid_body = NodePath("..")
+audio_file = ExtResource("2_1e8as")

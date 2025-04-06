@@ -1,6 +1,5 @@
 extends Node
 
-
 ## The main [AudioStreamPlayer] used to play the music.
 var main_player: AudioStreamPlayer
 
@@ -8,10 +7,8 @@ var main_player: AudioStreamPlayer
 ## simultaneously.
 var transition_player: AudioStreamPlayer
 
-
 ## The tween used to fade the music.
 var fade_tween: Tween
-
 
 enum Transitions {
 	## Instantly switch music.
@@ -24,7 +21,6 @@ enum Transitions {
 	FADE_OUT
 }
 
-
 func _ready() -> void:
 	# Create the AudioStreamPlayers.
 	main_player = AudioStreamPlayer.new()
@@ -32,7 +28,6 @@ func _ready() -> void:
 	
 	transition_player = AudioStreamPlayer.new()
 	add_child(transition_player)
-
 
 ## Plays the song specified in [param settings].
 func play(settings: MusicSettings, from: float = 0.0) -> void:

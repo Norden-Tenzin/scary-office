@@ -5623,6 +5623,7 @@ hands = NodePath("../Hands")
 [node name="SpatialAudio3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_je7p5")
 script = ExtResource("10_h17s1")
+reverb_enabled = false
 metadata/_custom_type_script = "uid://1jgsuc1snep3"
 
 [connection signal="collision_ended" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_ended"]

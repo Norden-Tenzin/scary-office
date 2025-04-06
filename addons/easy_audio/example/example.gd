@@ -1,12 +1,10 @@
 extends CanvasLayer
 
-
 ## This script showcases all functionalities of the GEA - Godot Easy Audio addon.
 ## Feel free to play around with the example script and scene to get to understand
 ## the addon ;)
 ##
 ## _ IsItLucas?
-
 
 @onready var SoundOptionButton: OptionButton = %SoundOptionButton
 @onready var TransitionOptionButton: OptionButton = %TransitionOptionButton
@@ -19,9 +17,7 @@ extends CanvasLayer
 @onready var MusicPitchSlider: HSlider = %MusicPitchSlider
 @onready var MusicVolumeSlider: HSlider = %MusicVolumeSlider
 
-
 var music_id: int = 0
-
 
 func _on_sound_button_pressed() -> void:
 	# Decide which sound should be played.
@@ -41,11 +37,9 @@ func _on_sound_button_pressed() -> void:
 		.set_bus("SFX")
 	)
 
-
 func _on_clear_button_pressed() -> void:
 	# Unload all loaded sounds.
 	Audio.clean_up()
-
 
 func _on_music_button_pressed() -> void:
 	# Alternate music.

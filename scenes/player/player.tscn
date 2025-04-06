@@ -1,14 +1,13 @@
-[gd_scene load_steps=29 format=4 uid="uid://d1lhuwyxtej4"]
+[gd_scene load_steps=28 format=4 uid="uid://d1lhuwyxtej4"]
 
 [ext_resource type="PackedScene" uid="uid://dcj8tflcb6aom" path="res://components/movement_component/movement_component.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://p55k7qy6v2fn" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://ddymiru1eefej" path="res://scenes/arms/arms.gd" id="2_75vfm"]
-[ext_resource type="Script" uid="uid://c5nkrt115x25w" path="res://scenes/player/ray_cast_3d.gd" id="2_qek5x"]
 [ext_resource type="Texture2D" uid="uid://bb73ajarfwtb2" path="res://assets/3d/arms/PSX_First_Person_Arms_arms.png" id="3_0owmy"]
 [ext_resource type="PackedScene" uid="uid://dofdfp1p4gc5" path="res://components/ray_cast_component/ray_cast_component.tscn" id="3_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://0hacxp4jvbo2" path="res://components/look_component/look_component.tscn" id="3_gmlin"]
-[ext_resource type="Script" uid="uid://emfwoucueeyh" path="res://components/ray_cast_component/ray_cast_component.gd" id="4_h17s1"]
 [ext_resource type="PackedScene" uid="uid://biqigad40lfbd" path="res://components/crosshair_component/crosshair_component.tscn" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://dyvpulpnjpsku" path="res://components/input_component/input_component.tscn" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://1jgsuc1snep3" path="res://addons/spatial_audio_3d/spatial_audio_3d.gd" id="10_h17s1"]
 [ext_resource type="AudioStream" uid="uid://540t7el1enl2" path="res://assets/audio/vostokfootsteps/fc1.ogg" id="10_je7p5"]
 
@@ -5208,25 +5207,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.2)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
-target_position = Vector3(0, 0, -2)
-collision_mask = 8
-script = ExtResource("2_qek5x")
-
-[node name="Marker3D" type="Marker3D" parent="Head/Camera3D/RayCast3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.18269)
-
-[node name="RayCastComponent" parent="Head/Camera3D" instance=ExtResource("3_5gtgg")]
-collision_mask = 2
-hit_from_inside = true
-script = ExtResource("4_h17s1")
-
 [node name="Hands" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.2)
 
-[node name="Arms" type="Node3D" parent="Hands"]
+[node name="Arms" type="Node3D" parent="Hands" node_paths=PackedStringArray("ray_cast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0.1)
 script = ExtResource("2_75vfm")
+ray_cast = NodePath("../../RayCastComponent")
 
 [node name="arms_armature" type="Node3D" parent="Hands/Arms"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -5609,16 +5596,24 @@ libraries = {
 }
 autoplay = "Relax_hands_idle"
 
-[node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head") instance=ExtResource("1_8afob")]
+[node name="RayCastComponent" parent="." node_paths=PackedStringArray("head", "camera") instance=ExtResource("3_5gtgg")]
+head = NodePath("../Head")
+camera = NodePath("../Head/Camera3D")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head", "hands") instance=ExtResource("1_8afob")]
 player = NodePath("..")
 head = NodePath("../Head")
+hands = NodePath("../Hands")
 
 [node name="LookComponent" parent="." node_paths=PackedStringArray("head", "camera", "hands") instance=ExtResource("3_gmlin")]
 head = NodePath("../Head")
 camera = NodePath("../Head/Camera3D")
 hands = NodePath("../Hands")
 
-[node name="CrosshairComponent" parent="." instance=ExtResource("7_0owmy")]
+[node name="CrosshairComponent" parent="." node_paths=PackedStringArray("ray_cast") instance=ExtResource("7_0owmy")]
+ray_cast = NodePath("../RayCastComponent")
+
+[node name="InputComponent" parent="." instance=ExtResource("9_5gtgg")]
 
 [node name="SpatialAudio3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_je7p5")
@@ -5626,7 +5621,10 @@ script = ExtResource("10_h17s1")
 reverb_enabled = false
 metadata/_custom_type_script = "uid://1jgsuc1snep3"
 
-[connection signal="collision_ended" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_ended"]
-[connection signal="collision_started" from="Head/Camera3D/RayCastComponent" to="CrosshairComponent" method="_on_ray_cast_component_collision_started"]
-[connection signal="drop" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_drop"]
-[connection signal="interact_hit" from="Head/Camera3D/RayCastComponent" to="Hands/Arms" method="_on_ray_cast_component_interact_hit"]
+[connection signal="on_crouch" from="." to="Head" method="_on_player_on_crouch"]
+[connection signal="on_crouch" from="." to="MovementComponent" method="_on_player_on_crouch"]
+[connection signal="Click" from="InputComponent" to="Hands/Arms" method="_on_input_component_click"]
+[connection signal="Click" from="InputComponent" to="RayCastComponent" method="_on_input_component_click"]
+[connection signal="crouch" from="InputComponent" to="." method="_on_input_component_crouch"]
+[connection signal="crouch" from="InputComponent" to="MovementComponent" method="_on_input_component_crouch"]
+[connection signal="drop" from="InputComponent" to="Hands/Arms" method="_on_input_component_drop"]

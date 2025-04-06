@@ -1,5 +1,19 @@
 extends Node
 
+# Used by InputComponent
+enum ActionInput {
+	LeftClick,
+	RightClick,
+	Up,
+	Down,
+	Left,
+	Right,
+	DropLeft,
+	DropRight,
+	ThrowLeft,
+	ThrowRight
+}
+
 enum SoundLevel {
 	Low,
 	Mid,

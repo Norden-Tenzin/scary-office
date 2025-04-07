@@ -5,6 +5,10 @@ extends Node3D
 @onready var remote_left: RemoteTransform3D = %RemoteLeft
 @onready var remote_right: RemoteTransform3D = %RemoteRight
 
+var isHoldingObjectLeft: bool = false
+var held_object: RigidBody3D = null
+var collider: Object = null
+
 func interact(remote: RemoteTransform3D, collider: Object) -> void:
 	if collider:
 		if collider.is_in_group("PickUpAble"):
@@ -59,3 +63,31 @@ func check_collision() -> Object:
 	if ray_cast.is_colliding():
 		return ray_cast.get_collider()
 	return null
+
+func _physics_process(delta: float) -> void:
+	if ray_cast.is_colliding():
+		collider = ray_cast.get_collider()
+	else:
+		collider = null
+	drag_object()
+
+func drag_object() -> void:
+	if isHoldingObjectLeft:
+			var velocity: Vector3 = ray_cast.get_marker_position() - held_object.global_position
+			velocity = velocity.normalized()
+			held_object.apply_central_force(velocity * 7)
+		
+func hold_object(collider: Object) -> void:
+	if collider && collider.is_in_group("Door"):
+		isHoldingObjectLeft = true
+		held_object = collider
+
+
+func _on_input_component_drag_started(what: GlobalEnums.ActionInput) -> void:
+	if what == GlobalEnums.ActionInput.LeftClick:
+		hold_object(collider)
+
+
+func _on_input_component_let_go(what: GlobalEnums.ActionInput) -> void:
+	if what == GlobalEnums.ActionInput.LeftClick:
+		isHoldingObjectLeft = false

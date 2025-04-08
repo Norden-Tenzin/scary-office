@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://df3sung40bvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://df3sung40bvtp"]
 
 [ext_resource type="PackedScene" uid="uid://3rhcrctiainw" path="res://assets/test_plan/test_plan.glb" id="1_67px6"]
+[ext_resource type="Script" uid="uid://bf808hcqtlkfy" path="res://scenes/test_room3/test_plan.gd" id="2_4stue"]
 [ext_resource type="Texture2D" uid="uid://kbflsd64fuxy" path="res://assets/prototype textures/PNG/Light/texture_08.png" id="2_7150y"]
-[ext_resource type="PackedScene" uid="uid://c2exdkl4d4ykl" path="res://scenes/space/door.tscn" id="3_wxpxc"]
+[ext_resource type="PackedScene" uid="uid://c2exdkl4d4ykl" path="res://scenes/space/door/door.tscn" id="3_wxpxc"]
 [ext_resource type="PackedScene" uid="uid://d1lhuwyxtej4" path="res://scenes/player/player.tscn" id="4_qoljd"]
+[ext_resource type="PackedScene" uid="uid://caqx7cy23glfa" path="res://scenes/objects/lock/lock.tscn" id="6_exh85"]
+[ext_resource type="PackedScene" uid="uid://s5iubqpeeclf" path="res://scenes/objects/key/key.tscn" id="7_waq8x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxpxc"]
 albedo_texture = ExtResource("2_7150y")
@@ -23,10 +26,10 @@ sky_material = SubResource("ProceduralSkyMaterial_qoljd")
 background_mode = 2
 sky = SubResource("Sky_56hba")
 tonemap_mode = 2
-sdfgi_enabled = true
 glow_enabled = true
 
 [node name="test_plan" instance=ExtResource("1_67px6")]
+script = ExtResource("2_4stue")
 
 [node name="Cube" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wxpxc")
@@ -49,6 +52,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31812, 0.308653, 5.19292)
 [node name="Door" parent="." index="4" instance=ExtResource("3_wxpxc")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -8.50741, 1.23365, 9.92056)
 
+[node name="Lock" parent="Door" index="3" instance=ExtResource("6_exh85")]
+transform = Transform3D(-1.27219e-08, 0, -0.291044, 0, 0.291044, 0, 0.291044, 0, -1.27219e-08, 0, 0, 0.848827)
+_code = 555
+
 [node name="Door2" parent="." index="5" instance=ExtResource("3_wxpxc")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2.51391, 1.23365, 9.95205)
 
@@ -63,3 +70,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5541
 
 [node name="Door6" parent="." index="9" instance=ExtResource("3_wxpxc")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.5552, 1.23365, -3.02266)
+
+[node name="Key" parent="." index="10" instance=ExtResource("7_waq8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45377, 0.158652, 3.56551)
+code = 555

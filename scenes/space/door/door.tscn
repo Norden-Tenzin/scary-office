@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2exdkl4d4ykl"]
+[gd_scene load_steps=10 format=3 uid="uid://c2exdkl4d4ykl"]
 
 [ext_resource type="Texture2D" uid="uid://e7ceef1jr1rw" path="res://assets/prototype textures/PNG/Dark/texture_08.png" id="1_3y86g"]
+[ext_resource type="Script" uid="uid://s3fbdma7bgy5" path="res://scenes/space/door/door.gd" id="1_4qr7a"]
+[ext_resource type="Script" uid="uid://dp7fasexwb274" path="res://scenes/space/door/rigid_body_3d.gd" id="2_htqmj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_myn5o"]
 size = Vector3(0.05, 2.25, 0.05)
@@ -19,15 +21,12 @@ size = Vector3(0.05, 2.15601, 0.93)
 albedo_texture = ExtResource("1_3y86g")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qr7a"]
-albedo_texture = ExtResource("1_3y86g")
-uv1_triplanar = true
-
 [sub_resource type="BoxMesh" id="BoxMesh_2bm67"]
 material = SubResource("StandardMaterial3D_4qr7a")
 size = Vector3(0.05, 2.25, 0.97)
 
 [node name="Door" type="Node3D"]
+script = ExtResource("1_4qr7a")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 0
@@ -43,6 +42,7 @@ mesh = SubResource("BoxMesh_4qr7a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.49)
 collision_layer = 8
 linear_damp = 7.0
+script = ExtResource("2_htqmj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0230713, 0)
@@ -52,11 +52,9 @@ shape = SubResource("BoxShape3D_htqmj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0158314)
 mesh = SubResource("BoxMesh_2bm67")
 
-[node name="Marker3D" type="Marker3D" parent="RigidBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.8952e-09, 0, 0.445329)
-
 [node name="HingeJoint3D" type="HingeJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 node_a = NodePath("../StaticBody3D")
 node_b = NodePath("../RigidBody3D")
 angular_limit/enable = true
+angular_limit/lower = 0.0

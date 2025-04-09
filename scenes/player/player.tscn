@@ -5625,6 +5625,8 @@ metadata/_custom_type_script = "uid://1jgsuc1snep3"
 [connection signal="on_crouch" from="." to="MovementComponent" method="_on_player_on_crouch"]
 [connection signal="Click" from="InputComponent" to="Hands/Arms" method="_on_input_component_click"]
 [connection signal="Click" from="InputComponent" to="RayCastComponent" method="_on_input_component_click"]
+[connection signal="DragStarted" from="InputComponent" to="Hands/Arms" method="_on_input_component_drag_started"]
+[connection signal="LetGo" from="InputComponent" to="Hands/Arms" method="_on_input_component_let_go"]
 [connection signal="crouch" from="InputComponent" to="." method="_on_input_component_crouch"]
 [connection signal="crouch" from="InputComponent" to="MovementComponent" method="_on_input_component_crouch"]
 [connection signal="drop" from="InputComponent" to="Hands/Arms" method="_on_input_component_drop"]

@@ -21,13 +21,10 @@ func interact(remote: RemoteTransform3D, collider: Object) -> void:
 					var key: Keycard = get_node(remote.remote_path) as Keycard
 					var lock: Lock = collider as Lock
 					if key.type == lock.type:
-						# unlock
-						lock.unlock(key.code)
-						# remove key 
-						#key.queue_free()
-						#remote.remote_path = NodePath()
+						remote.remote_path = NodePath()
+						lock.insert_card(key)
 		elif collider is LockButton:
-			collider.lock()
+			collider.pushed()
 	else:
 		if remote.remote_path != NodePath():
 			if get_node(remote.remote_path) is FlashLight:

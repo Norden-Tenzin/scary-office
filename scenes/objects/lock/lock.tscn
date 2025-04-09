@@ -1,40 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://caqx7cy23glfa"]
+[gd_scene load_steps=6 format=3 uid="uid://caqx7cy23glfa"]
 
 [ext_resource type="Script" uid="uid://3kew7lete0gn" path="res://scenes/objects/lock/lock.gd" id="1_yjytn"]
 [ext_resource type="Script" uid="uid://bkay40opr2kmr" path="res://scenes/objects/lock/lock_button.gd" id="2_0oe7q"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjytn"]
-albedo_color = Color(0.655848, 0.277144, 0.537572, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0oe7q"]
-material = SubResource("StandardMaterial3D_yjytn")
-size = Vector3(1, 2, 1)
+[ext_resource type="PackedScene" uid="uid://bblvvjt0ocu85" path="res://assets/space/Lock and handle/keycard_lock_left.fbx" id="2_5ctyq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yjytn"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.61763, 1.72388, 0.120712)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yjytn"]
-height = 0.07
-radius = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ctyq"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_0oe7q"]
-material = SubResource("StandardMaterial3D_5ctyq")
-top_radius = 0.2
-bottom_radius = 0.2
-height = 0.07
+height = 0.155176
+radius = 0.1
 
 [node name="Lock" type="Area3D" groups=["Lock"]]
 collision_layer = 8
 script = ExtResource("1_yjytn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("BoxMesh_0oe7q")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0046463, -0.00695801, -0.00101471)
 shape = SubResource("BoxShape3D_yjytn")
 
 [node name="LockButton" type="Area3D" parent="."]
@@ -43,9 +25,11 @@ collision_layer = 8
 script = ExtResource("2_0oe7q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LockButton"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.128105, 0.258727, -0.273205)
 shape = SubResource("CylinderShape3D_yjytn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LockButton"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_0oe7q")
+[node name="keycard_lock_left" parent="." instance=ExtResource("2_5ctyq")]
+transform = Transform3D(4.10353, 0, 0, 0, -1.79371e-07, -4.10353, 0, 4.10353, -1.79371e-07, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0.601151, 0.0576304)

@@ -1,6 +1,16 @@
 extends Node3D
 class_name Door
 
+@export var locked: bool:
+	set(v):
+		locked = v
+		if(locked):
+			$RigidBody3D.freeze = true
+		else:
+			$RigidBody3D.freeze = false
+	get:
+		return locked
+
 func _ready() -> void:
 	var main_scene_children: Array
 	var positions: Array
@@ -15,9 +25,3 @@ func _ready() -> void:
 		$RigidBody3D.add_child(child)
 		child.global_position = positions[i]
 		i += 1
-
-func unlock() -> void:
-	print("unlocked")
-	
-func lock() -> void:
-	print("locked")

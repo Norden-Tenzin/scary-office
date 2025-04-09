@@ -1,23 +1,26 @@
 [gd_scene load_steps=5 format=3 uid="uid://s5iubqpeeclf"]
 
 [ext_resource type="Script" uid="uid://db1y3f3dnbb04" path="res://scenes/objects/key/key.gd" id="1_fs2h0"]
+[ext_resource type="PackedScene" uid="uid://cgknyjkfc71e7" path="res://assets/space/Lock and handle/keycard.fbx" id="2_0f8ea"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs2h0"]
-albedo_color = Color(0.13494, 0.45089, 0.618945, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_sa8io"]
+size = Vector3(0.416077, 0.0305176, 0.831177)
 
-[sub_resource type="TorusMesh" id="TorusMesh_0f8ea"]
-material = SubResource("StandardMaterial3D_fs2h0")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_d5366"]
-radius = 0.1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vre45"]
+albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [node name="Key" type="RigidBody3D" groups=["PickUpAble"]]
 collision_layer = 2
 script = ExtResource("1_fs2h0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("TorusMesh_0f8ea")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_d5366")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00088501, -0.00183105, -0.00286865)
+shape = SubResource("BoxShape3D_sa8io")
+
+[node name="keycard" parent="." instance=ExtResource("2_0f8ea")]
+transform = Transform3D(4.104, 0, 0, 0, 4.104, 0, 0, 0, 4.104, 0, 0, 0)
+
+[node name="Cube" parent="keycard" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vre45")
+
+[editable path="keycard"]

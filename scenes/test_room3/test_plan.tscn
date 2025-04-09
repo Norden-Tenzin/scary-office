@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31812, 0.308653, 5.19292)
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -8.50741, 1.23365, 9.92056)
 
 [node name="Lock" parent="Door" index="3" instance=ExtResource("6_exh85")]
-transform = Transform3D(-1.27219e-08, 0, -0.291044, 0, 0.291044, 0, 0.291044, 0, -1.27219e-08, 0, 0, 0.848827)
+transform = Transform3D(-1.27219e-08, 0, -0.291044, 0, 0.291044, 0, 0.291044, 0, -1.27219e-08, -0.0388374, 0, 0.874882)
 _code = 555
 
 [node name="Door2" parent="." index="5" instance=ExtResource("3_wxpxc")]

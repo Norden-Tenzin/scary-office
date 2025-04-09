@@ -3,11 +3,14 @@ class_name Lock
 
 @export var type: GlobalEnums.LockKeyType = GlobalEnums.LockKeyType.Red
 @export var _code: int
+var door: Object
 
-func unlock(code: int) -> void:
-	if code == _code && get_parent().is_in_group("Door"):
-		get_parent().unlock()
+func _ready() -> void:
+	door = get_parent()
 
-func lock() -> void:
-	if get_parent().is_in_group("Door"):
-		get_parent().lock()
+func insert_card(card: Keycard) -> void:
+	$RemoteTransform3D.set_remote_node(card.get_path())
+
+func lock_switch() -> void:
+	if get_node($RemoteTransform3D.get_remote_node()).code == _code:
+		door.locked = !door.locked

@@ -5599,6 +5599,7 @@ autoplay = "Relax_hands_idle"
 [node name="RayCastComponent" parent="." node_paths=PackedStringArray("head", "camera") instance=ExtResource("3_5gtgg")]
 head = NodePath("../Head")
 camera = NodePath("../Head/Camera3D")
+length = 2.5
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("player", "head", "hands") instance=ExtResource("1_8afob")]
 player = NodePath("..")

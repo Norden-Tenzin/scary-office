@@ -37,7 +37,7 @@ project/assembly_name="ScaryOffice"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/easy_audio/plugin.cfg", "res://addons/godot-vim/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_audio/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6aypqip4o6or"]
+
+[ext_resource type="Script" uid="uid://b6mjmwcr2fx0t" path="res://scenes/boss/boss.gd" id="1_dgf3a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8ftqf"]
+radius = 0.3
+height = 1.75
+
+[node name="Boss" type="CharacterBody3D"]
+script = ExtResource("1_dgf3a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8ftqf")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

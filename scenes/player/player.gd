@@ -8,3 +8,6 @@ var is_crouched: bool = false
 func _on_input_component_crouch() -> void:
 	is_crouched = !is_crouched
 	on_crouch.emit(is_crouched)
+
+func _init() -> void:
+	Global.player = self

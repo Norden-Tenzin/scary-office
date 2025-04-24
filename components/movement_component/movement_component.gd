@@ -5,7 +5,7 @@ extends Node3D
 @export var hands: Node3D
 
 @export_category("Player Stat")
-@export var SPEED: float = 5.0
+@export var SPEED: float = 8.0
 @export var SPEED_CROUCHED: float = 2.5
 var move_speed: float = 0.0
 

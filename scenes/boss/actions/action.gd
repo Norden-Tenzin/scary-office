@@ -16,3 +16,6 @@ func _init(actor: CharacterBody3D) -> void:
 
 func perform(delta: float) -> void:
 	pass
+
+func interrupt() -> bool:
+	return true

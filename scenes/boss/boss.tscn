@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6aypqip4o6or"]
+[gd_scene load_steps=5 format=3 uid="uid://b6aypqip4o6or"]
 
 [ext_resource type="Script" uid="uid://b6mjmwcr2fx0t" path="res://scenes/boss/boss.gd" id="1_dgf3a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8ftqf"]
-radius = 0.3
+radius = 0.05
 height = 1.75
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dgf3a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dgf3a"]
+radius = 0.3
 
 [node name="Boss" type="CharacterBody3D"]
 script = ExtResource("1_dgf3a")
@@ -13,7 +18,9 @@ script = ExtResource("1_dgf3a")
 shape = SubResource("CapsuleShape3D_8ftqf")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("SphereShape3D_dgf3a")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_dgf3a")
